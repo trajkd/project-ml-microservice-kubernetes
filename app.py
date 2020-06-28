@@ -13,7 +13,7 @@ LOG.setLevel(logging.INFO)
 def scale(payload):
     """Scales Payload"""
     
-    LOG.info("Scaling Payload: \n" + str(payload))
+    LOG.info("Scaling Payload: \n%s", str(payload))
     scaler = StandardScaler().fit(payload.astype(float))
     scaled_adhoc_predict = scaler.transform(payload.astype(float))
     return scaled_adhoc_predict
@@ -55,9 +55,9 @@ def predict():
     
     # Logging the input payload
     json_payload = request.json
-    LOG.info("JSON payload: \n" + str(json_payload))
+    LOG.info("JSON payload: \n%s", str(json_payload))
     inference_payload = pd.DataFrame(json_payload)
-    LOG.info("Inference payload DataFrame: \n" + str(inference_payload))
+    LOG.info("Inference payload DataFrame: \n%s", str(inference_payload))
     # scale the input
     scaled_payload = scale(inference_payload)
     # get an output prediction from the pretrained model, clf
